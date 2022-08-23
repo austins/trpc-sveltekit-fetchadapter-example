@@ -1,6 +1,5 @@
 <script lang="ts">
     import trpcClient, { isTRPCClientError } from "$lib/trpc/trpcClient";
-
     import type { PageData } from "./$types";
 
     export let data: PageData;
