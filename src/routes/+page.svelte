@@ -13,6 +13,7 @@
     async function handleSubmit() {
         try {
             const newTodo = await trpcClient().todo.add.mutate({ name, content });
+            error = "";
             data.todos = data.todos.concat(newTodo);
         } catch (cause) {
             if (isTRPCClientError(cause)) {
