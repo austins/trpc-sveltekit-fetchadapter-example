@@ -15,11 +15,13 @@ export default t.router({
             })
         )
         .mutation(({ input }) => {
-            const lastId = Math.max(
-                ...todos.map((t) => {
-                    return t.id;
-                })
-            );
+            const lastId = !todos.length
+                ? 0
+                : Math.max(
+                      ...todos.map((t) => {
+                          return t.id;
+                      })
+                  );
 
             const todo = { id: lastId + 1, ...input };
             todos.push(todo);

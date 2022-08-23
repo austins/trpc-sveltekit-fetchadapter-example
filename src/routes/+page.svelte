@@ -61,26 +61,32 @@
     <h2 class="mb-3 text-xl font-bold">Todos</h2>
 
     <div class="flex gap-3">
-        {#each data.todos as todo (todo.id)}
-            <div class="rounded border border-slate-400 p-3">
-                <header>
-                    <h3 class="font-semibold">{todo.name}</h3>
-                </header>
+        {#if data.todos.length}
+            {#each data.todos as todo (todo.id)}
+                <div class="rounded border border-slate-400 p-3">
+                    <header>
+                        <h3 class="text-lg font-semibold">{todo.name}</h3>
+                    </header>
 
-                <div class="mb-2">{todo.content}</div>
+                    <div class="mb-2 text-xs font-semibold italic">ID: {todo.id}</div>
 
-                <div>
-                    <button
-                        type="button"
-                        class="rounded bg-red-300 px-2 py-1 text-sm hover:bg-red-200"
-                        on:click={() => {
-                            return handleDelete(todo.id);
-                        }}
-                    >
-                        Delete
-                    </button>
+                    <div class="mb-2">{todo.content}</div>
+
+                    <div>
+                        <button
+                            type="button"
+                            class="rounded bg-red-300 px-2 py-1 text-sm hover:bg-red-200"
+                            on:click={async () => {
+                                return await handleDelete(todo.id);
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </div>
                 </div>
-            </div>
-        {/each}
+            {/each}
+        {:else}
+            No todos.
+        {/if}
     </div>
 </section>
