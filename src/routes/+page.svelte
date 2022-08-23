@@ -77,7 +77,7 @@
                             type="button"
                             class="rounded bg-red-300 px-2 py-1 text-sm hover:bg-red-200"
                             on:click={async () => {
-                                return await handleDelete(todo.id);
+                                await handleDelete(todo.id);
                             }}
                         >
                             Delete
