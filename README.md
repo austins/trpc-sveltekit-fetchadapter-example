@@ -1,4 +1,4 @@
-An example "todos" project of tRPC v10-alpha (w/ Fetch Adapter) + SvelteKit + Tailwind CSS.
+An example "todos" project of [tRPC](https://github.com/trpc/trpc) v10-alpha (w/ Fetch Adapter) + [SvelteKit](https://github.com/sveltejs/kit) + [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss).
 
 ## Developing
 
