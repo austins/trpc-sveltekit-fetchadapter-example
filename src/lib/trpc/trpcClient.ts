@@ -2,9 +2,8 @@ import { createTRPCProxyClient, dedupeLink, loggerLink, httpBatchLink, TRPCClien
 import type { AppRouter } from "./routers/appRouter";
 import type { LoadEvent } from "@sveltejs/kit";
 import superjson from "superjson";
-import { browser } from "$app/env";
+import { browser, dev } from "$app/env";
 import { trpcPathBase } from "./context";
-import { dev } from "$app/env";
 
 export default (loadFetch?: LoadEvent["fetch"]) => {
     return createTRPCProxyClient<AppRouter>({
