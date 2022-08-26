@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    a {
+        @apply border-r  border-gray-600 px-3 py-1 text-xl text-blue-600 last:border-r-0 hover:text-blue-400;
+    }
+
+    p {
+        @apply mb-4 last:mb-0;
+    }
+}
+
 @layer components {
     .container {
         @apply p-4;

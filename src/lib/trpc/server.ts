@@ -2,6 +2,7 @@ import { initTRPC } from "@trpc/server";
 import type { Context } from "./context";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import appRouter from "./routers/appRouter";
 
 export const t = initTRPC<{ ctx: Context }>()({
     transformer: superjson,
@@ -16,3 +17,7 @@ export const t = initTRPC<{ ctx: Context }>()({
         };
     },
 });
+
+export function trpcSsr(req: Request) {
+    return appRouter.createCaller({ req });
+}
