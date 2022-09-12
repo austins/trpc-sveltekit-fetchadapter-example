@@ -1,6 +1,5 @@
 <script lang="ts">
     import Info from "$lib/components/Info.svelte";
-
     import Todos from "$lib/components/Todos.svelte";
     import trpcClient from "$lib/trpc/trpcClient";
 

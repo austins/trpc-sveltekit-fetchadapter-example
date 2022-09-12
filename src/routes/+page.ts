@@ -1,2 +1,2 @@
-export const hydrate = false;
+export const csr = true;
 export const prerender = true;
