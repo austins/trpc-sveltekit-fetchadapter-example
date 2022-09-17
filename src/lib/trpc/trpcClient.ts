@@ -16,7 +16,7 @@ export default (loadFetch?: LoadEvent["fetch"]) => {
             }),
             httpBatchLink({
                 // The port isn't constant by default, so we have set it to 3000 in vite.config.js for tRPC server-side fetches.
-                url: loadFetch || browser ? trpcPathBase : `http://localhost:3000${trpcPathBase}`,
+                url: loadFetch && browser ? trpcPathBase : `http://localhost:3000${trpcPathBase}`,
             }),
         ],
         transformer: superjson,

@@ -4,7 +4,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 import appRouter from "./routers/appRouter";
 
-export const t = initTRPC<{ ctx: Context }>()({
+export const t = initTRPC.context<Context>().create({
     transformer: superjson,
     errorFormatter({ shape, error }) {
         return {
