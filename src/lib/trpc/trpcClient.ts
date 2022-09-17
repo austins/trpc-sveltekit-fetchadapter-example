@@ -11,7 +11,7 @@ export default (loadFetch?: LoadEvent["fetch"]) => {
             dedupeLink(),
             loggerLink({
                 enabled: () => {
-                    return dev && false;
+                    return dev;
                 },
             }),
             httpBatchLink({
