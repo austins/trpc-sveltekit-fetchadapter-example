@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { AppRouter } from "$lib/trpc/routers/appRouter";
-    import trpcClient, { isTRPCClientError } from "$lib/trpc/trpcClient";
+    import { isTRPCClientError, trpc } from "$lib/trpc/trpc";
     import type { inferProcedureOutput } from "@trpc/server";
 
     export let todos: inferProcedureOutput<AppRouter["todo"]["list"]>;
@@ -12,7 +12,7 @@
 
     async function handleSubmit() {
         try {
-            const newTodo = await trpcClient().todo.add.mutate({ name, content });
+            const newTodo = await trpc().todo.add.mutate({ name, content });
             error = "";
             todos = todos.concat(newTodo);
         } catch (cause) {
@@ -23,10 +23,10 @@
     }
 
     async function handleDelete(id: number) {
-        await trpcClient().todo.delete.mutate(id);
+        await trpc().todo.delete.mutate(id);
 
         // Refetch.
-        todos = await trpcClient().todo.list.query();
+        todos = await trpc().todo.list.query();
     }
 </script>
 

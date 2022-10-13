@@ -1,10 +1,8 @@
-import { t } from "../server";
-import todoRouter from "./todoRouter";
+import { router } from "../server";
+import { todoRouter } from "./todoRouter";
 
-const appRouter = t.router({
+export const appRouter = router({
     todo: todoRouter,
 });
-
-export default appRouter;
 
 export type AppRouter = typeof appRouter;

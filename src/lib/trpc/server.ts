@@ -1,22 +1,14 @@
 import { initTRPC } from "@trpc/server";
 import type { Context } from "./context";
 import superjson from "superjson";
-import { ZodError } from "zod";
-import appRouter from "./routers/appRouter";
+import { appRouter } from "./routers/appRouter";
 
-export const t = initTRPC.context<Context>().create({
+const t = initTRPC.context<Context>().create({
     transformer: superjson,
-    errorFormatter({ shape, error }) {
-        return {
-            ...shape,
-            data: {
-                ...shape.data,
-                zodError:
-                    error.code === "BAD_REQUEST" && error.cause instanceof ZodError ? error.cause.flatten() : null,
-            },
-        };
-    },
 });
+
+export const router = t.router;
+export const publicProcedure = t.procedure;
 
 export function trpcSsr(req: Request) {
     return appRouter.createCaller({ req });

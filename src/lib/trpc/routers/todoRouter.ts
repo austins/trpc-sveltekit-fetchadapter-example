@@ -1,13 +1,11 @@
 import { todos } from "$lib/data/todos";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { t } from "../server";
+import { publicProcedure, router } from "../server";
 
-export default t.router({
-    list: t.procedure.query(() => {
-        return todos;
-    }),
-    add: t.procedure
+export const todoRouter = router({
+    list: publicProcedure.query(() => todos),
+    add: publicProcedure
         .input(
             z.object({
                 name: z.string().trim().min(1),
@@ -15,25 +13,15 @@ export default t.router({
             })
         )
         .mutation(({ input }) => {
-            const lastId = todos.length
-                ? Math.max(
-                      ...todos.map((t) => {
-                          return t.id;
-                      })
-                  )
-                : 0;
+            const lastId = todos.length ? Math.max(...todos.map((t) => t.id)) : 0;
 
             const todo = { id: lastId + 1, ...input };
             todos.push(todo);
 
             return todo;
         }),
-    delete: t.procedure.input(z.number().min(1)).mutation(({ input }) => {
-        const idIndex = todos
-            .map((t) => {
-                return t.id;
-            })
-            .indexOf(input);
+    delete: publicProcedure.input(z.number().min(1)).mutation(({ input }) => {
+        const idIndex = todos.map((t) => t.id).indexOf(input);
 
         if (idIndex >= 0) {
             todos.splice(idIndex, 1);
