@@ -6,3 +6,7 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
+
+export function trpcSsr(req: Request) {
+    return appRouter.createCaller({ req });
+}

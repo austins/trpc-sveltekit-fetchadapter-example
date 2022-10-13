@@ -1,4 +1,4 @@
-import { trpcSsr } from "$lib/trpc/server";
+import { trpcSsr } from "$lib/trpc/routers/appRouter";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ request }) => {
