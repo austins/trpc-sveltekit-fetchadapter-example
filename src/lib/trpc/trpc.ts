@@ -8,9 +8,7 @@ import { trpcPathBase } from "./context";
 export const trpc = (loadFetch?: LoadEvent["fetch"]) =>
     createTRPCProxyClient<AppRouter>({
         links: [
-            loggerLink({
-                enabled: () => dev,
-            }),
+            loggerLink({ enabled: () => dev }),
             httpBatchLink({
                 // The port isn't constant by default, so we have set it to 3000 in vite.config.js for tRPC server-side fetches.
                 url: loadFetch || browser ? trpcPathBase : `http://localhost:3000${trpcPathBase}`,
