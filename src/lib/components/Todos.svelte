@@ -25,7 +25,7 @@
     async function handleDelete(id: number) {
         await trpc().todo.delete.mutate(id);
 
-        // Refetch.
+        // We'll do a refetch (or you can delete the item from the array and assign the updated array).
         todos = await trpc().todo.list.query();
     }
 </script>
