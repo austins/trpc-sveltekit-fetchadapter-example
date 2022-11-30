@@ -1,4 +1,4 @@
-import { trpc } from "$lib/trpc/trpc";
+import { trpcClient } from "$lib/trpc/trpcClient";
 import type { PageLoad } from "./$types";
 
 /**
@@ -10,4 +10,4 @@ import type { PageLoad } from "./$types";
  * multiple promises without creating a waterfall.
  * {@link https://kit.svelte.dev/docs/load#output}
  */
-export const load: PageLoad = ({ fetch }) => ({ todos: trpc(fetch).todo.list.query() });
+export const load: PageLoad = ({ fetch }) => ({ todos: trpcClient(fetch).todo.list.query() });

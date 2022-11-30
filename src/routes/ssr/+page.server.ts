@@ -1,4 +1,4 @@
-import { trpcSsr } from "$lib/trpc/routers/appRouter";
+import { trpcSsr } from "$lib/trpc/routers/appRouter.server";
 import type { PageServerLoad } from "./$types";
 
 /**
@@ -9,4 +9,4 @@ import type { PageServerLoad } from "./$types";
  * multiple promises without creating a waterfall.
  * {@link https://kit.svelte.dev/docs/load#output}
  */
-export const load: PageServerLoad = ({ request }) => ({ todos: trpcSsr(request).todo.list() });
+export const load: PageServerLoad = ({ request }) => ({ todos: trpcSsr({ req: request }).todo.list() });

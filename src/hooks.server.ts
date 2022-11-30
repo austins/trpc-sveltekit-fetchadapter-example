@@ -1,7 +1,7 @@
 import type { Handle } from "@sveltejs/kit";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import type { Context } from "$lib/trpc/context";
-import { appRouter } from "$lib/trpc/routers/appRouter";
+import type { Context } from "$lib/trpc/context.server";
+import { appRouter } from "$lib/trpc/routers/appRouter.server";
 import { trpcPathBase } from "$lib/trpc/config";
 
 export const handle: Handle = async ({ event, resolve }) => {

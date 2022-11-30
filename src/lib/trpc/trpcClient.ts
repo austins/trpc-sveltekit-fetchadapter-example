@@ -1,11 +1,11 @@
 import { createTRPCProxyClient, TRPCClientError, loggerLink, httpLink } from "@trpc/client";
-import type { AppRouter } from "./routers/appRouter";
+import type { AppRouter } from "./routers/appRouter.server";
 import type { LoadEvent } from "@sveltejs/kit";
-import superjson from "superjson";
 import { browser, dev } from "$app/environment";
 import { trpcPathBase } from "./config";
+import { transformer } from "./transformer";
 
-export const trpc = (loadFetch?: LoadEvent["fetch"]) =>
+export const trpcClient = (loadFetch?: LoadEvent["fetch"]) =>
     createTRPCProxyClient<AppRouter>({
         links: [
             loggerLink({ enabled: () => dev }),
@@ -15,7 +15,7 @@ export const trpc = (loadFetch?: LoadEvent["fetch"]) =>
                 ...(loadFetch && { fetch: loadFetch }),
             }),
         ],
-        transformer: superjson,
+        transformer,
     });
 
 export function isTRPCClientError(cause: unknown): cause is TRPCClientError<AppRouter> {

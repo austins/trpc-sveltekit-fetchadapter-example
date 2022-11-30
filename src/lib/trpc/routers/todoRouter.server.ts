@@ -1,7 +1,7 @@
-import { todos } from "$lib/data/todos";
+import { todos } from "$lib/data/todos.server";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { publicProcedure, router } from "../server";
+import { publicProcedure, router } from "../trpc.server";
 
 export const todoRouter = router({
     list: publicProcedure.query(() => todos),

@@ -1,9 +1,9 @@
 <script lang="ts">
     import Info from "$lib/components/Info.svelte";
     import Todos from "$lib/components/Todos.svelte";
-    import { trpc } from "$lib/trpc/trpc";
+    import { trpcClient } from "$lib/trpc/trpcClient";
 
-    $: todosPromise = trpc().todo.list.query();
+    $: todosPromise = trpcClient().todo.list.query();
 </script>
 
 <Info>
